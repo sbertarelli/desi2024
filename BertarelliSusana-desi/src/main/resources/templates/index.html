@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Caminos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: rgb(240, 242, 244);
+        }
+        header {
+            background-color: #343a40; /* Color de fondo del header */
+            color: white; /* Color del texto en el header */
+            text-align: center; /* Centra el texto dentro del header */
+            padding: 30px; /* Espaciado interno en el header */
+        }
+        h2 {
+            color: rgb(0, 128, 192);
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+            flex: 1; /* Permite que el contenedor ocupe el espacio restante */
+            display: flex;
+            flex-direction: column;
+            align-items: left; /* Alinea el contenido a la izquierda */
+            margin-top: 1.5cm; /* Agrega separación de 1.5 cm desde el header */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gestor de Transportes TSTI</h1>
+    </header>
+    
+    <div class="container">
+        <h2>Consulta "Estados de caminos"</h2>
+
+        <form action="/consultar" method="post">
+            <div class="form-group">
+                <label for="codigoPostal">Código Postal:</label>
+                <input type="text" id="codigoPostal" name="codigoPostal" class="form-control" required maxlength="4" pattern="\d{4}" title="Ingrese un código postal de 4 dígitos">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+            <a th:href="@{/}" class="btn btn-secondary">Limpiar</a>
+        </form>
+
+        <div th:if="${error}" class="alert alert-danger mt-3" th:text="${error}"></div>
+    </div>
+
+    <footer style="display: flex; justify-content: space-between">
+        <p style="margin: 0;">TRANSPORTES TSTI</p>
+        <p style="margin: 0;">Diseñado por SB</p>
+    </footer>
+</body>
+</html>
